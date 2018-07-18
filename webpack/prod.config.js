@@ -5,6 +5,7 @@ const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const Copy = require('copy-webpack-plugin')
 
 module.exports = {
   entry: common.entry,
@@ -39,7 +40,7 @@ module.exports = {
         },
       }),
     ),
-
+    new Copy(common.copyLoader),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
     }),

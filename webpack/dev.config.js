@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const common = require('./common')
 
 const HtmlPlugin = require('html-webpack-plugin')
+const Copy = require('copy-webpack-plugin')
 const PORT = 3000
 
 module.exports = {
@@ -22,6 +23,7 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"development"' } }),
+    new Copy(common.copyLoader),
     new HtmlPlugin(common.htmlPluginConfig),
   ],
 
