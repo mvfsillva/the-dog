@@ -1,18 +1,18 @@
 const webpack = require('webpack')
-const DevServer = require('webpack-dev-server')
+const Server = require('webpack-dev-server')
 const config = require('./webpack/dev.config')
 
 const PORT = 3000
 
-new DevServer(webpack(config), {
-  publicPath: config.publicPath,
+new Server(webpack(config), {
+  publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,
   overlay: true,
-  stats: { colors: true }
-}).listen(PORT, error => {
-  if (error) {
-    console.error(error)
+  stats: { colors: true },
+}).listen(PORT, err => {
+  if (err) {
+    console.error(err)
     process.exit(-1)
   }
 
