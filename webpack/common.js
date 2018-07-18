@@ -6,3 +6,16 @@ const paths = {
   public: join(__dirname, '..', 'public'),
   build: join(__dirname, '..', 'build')
 }
+
+module.exports = {
+  paths,
+  entry: {
+    main: join(paths.src, 'index')
+  },
+
+  output: {
+    path: paths.build,
+    filename: '[name]-[chunkhash].js',
+    publicPath: '/'
+  }
+}
