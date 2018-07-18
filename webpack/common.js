@@ -17,5 +17,10 @@ module.exports = {
     path: paths.build,
     filename: '[name]-[chunkhash].js',
     publicPath: '/'
+  },
+
+  htmlPluginConfig: {
+    title: 'The Dogs',
+    template: join(paths.public, 'index.html')
   }
 }
