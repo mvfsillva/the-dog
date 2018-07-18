@@ -22,5 +22,55 @@ module.exports = {
   htmlPluginConfig: {
     title: 'The Dogs',
     template: join(paths.public, 'index.html')
+  },
+
+  jsLoader: {
+    test: /\.js$/,
+    include: paths.src,
+    use: ['react-hot-loader/webpack', {
+      loader: 'babel-loader',
+      options: {
+        presets: [['env', { modules: false }], 'stage-0', 'react'],
+        plugins: [
+          'transform-decorators-legacy',
+          'transform-decorators',
+          ['transform-runtime', {
+            helpers: false,
+            polyfill: false,
+            regenerator: true
+          }]
+        ]
+      }
+    }]
+  },
+
+  fileLoader: {
+    test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|txt)(\?.*)?$/,
+    include: paths.src,
+    use: {
+      loader: 'file-loader',
+      options: {
+        name: 'media/[name].[hash:8].[ext]'
+      }
+    }
+  },
+
+  urlLoader: {
+    test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
+    include: paths.src,
+    use: {
+      loader: 'url-loader',
+      options: {
+        limit: 10000,
+        name: 'media/[name].[hash:8].[ext]'
+      }
+    }
+  },
+
+  resolve: {
+    alias: {
+      src: paths.src,
+    }
   }
 }
+
