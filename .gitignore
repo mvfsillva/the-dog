@@ -1,0 +1,21 @@
+# vim
+*.sw[op]
+
+# npm
+/node_modules/
+npm-debug.log
+
+# build
+/dist/
+lib
+
+# coverage
+coverage
+
+# common files
+.DS_Store
+
+# storybook build
+.out
+
+.vscode
