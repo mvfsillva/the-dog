@@ -1,43 +1,17 @@
-version: 2
-
-docker_defaults: &docker_defaults
-    docker:
-        - image: circleci/node:8.11.1-browsers
-    working_directory: ~/project/repo
-
-attach_workspace: &attach_workspace
-    attach_workspace:
-        at: ~/project
+defaults: &defaults
+  working_directory: ~/workspace/repo
+  docker:
+    - image: circleci/node:8.11.1-browsers
 
 to_persist: &to_persist
-  root: ~/project
+  root: ~/workspace
   paths:
     - repo/*
 
-install_steps: &install_steps
-    steps:
-        - checkout
-        - restore_cache:
-            name: Restore node_modules cache
-            keys:
-                - dependency-cache-{{ .Branch }}-{{ checksum "package.json" }}
-                - dependency-cache-{{ .Branch }}-
-                - dependency-cache-
-        - run:
-            name: Installing Dependencies
-            command: yarn install
-        - save_cache:
-            name: Save node_modules cache
-            key: dependency-cache-{{ .Branch }}-{{ checksum "yarn-lock" }}
-            paths:
-                - node_modules
-        - persist_to_workspace:
-            <<: *to_persist
-
+version: 2
 jobs:
   checkout:
-    <<: *docker_defaults
-    <<: *install_steps
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -56,41 +30,33 @@ jobs:
           <<: *to_persist
 
   lint:
-    <<: *docker_defaults
+    <<: *defaults
     steps:
-      - *attach_workspace
+      - attach_workspace:
+          at: ~/workspace
       - run:
-        name: Lint JavaScript Code
-        command: yarn lint
+          name: Lint JavaScript code
+          command: yarn lint
 
   lint_css:
-    <<: *docker_defaults
+    <<: *defaults
     steps:
-      - *attach_workspace
+      - attach_workspace:
+          at: ~/workspace
       - run:
-        name: Lint styled-components CSS code
-        command: yarn lint:css
-
-  # test:
-  #     <<: *docker_defaults
-  #     steps:
-  #         - *attach_workspace
-  #         - run:
-  #             name: Test React components and generate coverage report
-  #             command: yarn test:coverage --ci
-  #         - persist_to_workspace:
-  #           <<: *to_persist
+          name: Lint styled-components CSS code
+          command: yarn lint:css
 
   build:
-      <<: *docker_defaults
-      steps:
-          - *attach_workspace
-          - run:
-              name: Build Solution
-              command: yarn build
-          - persist_to_workspace:
-            <<: *to_persist
-
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/workspace
+      - run:
+          name:  Build React components
+          command: yarn build
+      - persist_to_workspace:
+          <<: *to_persist
 
 workflows:
   version: 2
@@ -98,11 +64,12 @@ workflows:
     jobs:
       - checkout
       - lint:
-        requires:
-          - checkout
-      - list_css:
-          - checkout
+          requires:
+            - checkout
+      - lint_css:
+          requires:
+            - checkout
       - build:
-        requires:
-          - lint
-          - lint_css
+          requires:
+            - lint
+            - lint_css
