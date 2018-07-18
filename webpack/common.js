@@ -79,6 +79,12 @@ module.exports = {
     },
   },
 
+  copyLoader: [{
+    from: `${paths.public}/**/**`,
+    ignore: [ '*.html' ],
+    to: `${paths.build}/[name].[ext]`
+  }],
+
   resolve: {
     alias: {
       src: paths.src,
