@@ -27,7 +27,6 @@ module.exports = {
       minChunks: ({ resource }) => /node_modules/.test(resource),
     }),
 
-    new Copy(common.copyLoader),
     new HtmlPlugin(
       Object.assign({}, common.htmlPluginConfig, {
         minify: { collapseWhitespace: true },
