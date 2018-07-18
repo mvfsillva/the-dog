@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     new CleanPlugin(['build'], { root: common.paths.root }),
     new ExtractTextPlugin({ filename: '[name]-[hash].css' }),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"' }}),
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"' } }),
 
     new webpack.optimize.CommonsChunkPlugin({
       name: 'react-build',
