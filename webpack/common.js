@@ -4,44 +4,56 @@ const paths = {
   root: join(__dirname, '..'),
   src: join(__dirname, '..', 'src'),
   public: join(__dirname, '..', 'public'),
-  build: join(__dirname, '..', 'build')
+  build: join(__dirname, '..', 'build'),
 }
 
 module.exports = {
   paths,
   entry: {
-    main: join(paths.src, 'index')
+    main: join(paths.src, 'index'),
   },
 
   output: {
     path: paths.build,
     filename: '[name]-[chunkhash].js',
-    publicPath: '/'
+    publicPath: '/',
   },
 
   htmlPluginConfig: {
     title: 'The Dogs',
-    template: join(paths.public, 'index.html')
+    template: join(paths.public, 'index.html'),
+  },
+
+  cssLoader: {
+    test: /\.css$/,
+    include: paths.src,
+    use: ['style-loader', 'css-loader'],
   },
 
   jsLoader: {
     test: /\.js$/,
     include: paths.src,
-    use: ['react-hot-loader/webpack', {
-      loader: 'babel-loader',
-      options: {
-        presets: [['env', { modules: false }], 'stage-0', 'react'],
-        plugins: [
-          'transform-decorators-legacy',
-          'transform-decorators',
-          ['transform-runtime', {
-            helpers: false,
-            polyfill: false,
-            regenerator: true
-          }]
-        ]
-      }
-    }]
+    use: [
+      'react-hot-loader/webpack',
+      {
+        loader: 'babel-loader',
+        options: {
+          presets: [['env', { modules: false }], 'stage-0', 'react'],
+          plugins: [
+            'transform-decorators-legacy',
+            'transform-decorators',
+            [
+              'transform-runtime',
+              {
+                helpers: false,
+                polyfill: false,
+                regenerator: true,
+              },
+            ],
+          ],
+        },
+      },
+    ],
   },
 
   fileLoader: {
@@ -50,9 +62,9 @@ module.exports = {
     use: {
       loader: 'file-loader',
       options: {
-        name: 'media/[name].[hash:8].[ext]'
-      }
-    }
+        name: 'media/[name].[hash:8].[ext]',
+      },
+    },
   },
 
   urlLoader: {
@@ -62,15 +74,14 @@ module.exports = {
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: 'media/[name].[hash:8].[ext]'
-      }
-    }
+        name: 'media/[name].[hash:8].[ext]',
+      },
+    },
   },
 
   resolve: {
     alias: {
       src: paths.src,
-    }
-  }
+    },
+  },
 }
-
