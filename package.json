@@ -28,7 +28,7 @@
     "moduleNameMapper": {
       "^src(.*)$": "<rooDir>/src$i"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/src/__test-helpers__/setup-tests.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/config/test/enzyme.setup.js",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
