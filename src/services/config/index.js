@@ -8,6 +8,9 @@ const config = {
   user: {
     signup: '/signup',
   },
+  feed: {
+    list: '/feed',
+  },
 }
 
 export default {
