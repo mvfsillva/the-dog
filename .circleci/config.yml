@@ -46,6 +46,16 @@ jobs:
       - run:
           name: Lint styled-components CSS code
           command: yarn lint:css
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/workspace
+      - run:
+          name: Test React components and generate coverage report
+          command: yarn test:coverage --ci
+      - persist_to_workspace:
+          <<: *to_persist
 
   build:
     <<: *defaults
@@ -69,7 +79,11 @@ workflows:
       - lint_css:
           requires:
             - checkout
+      - test:
+          requires:
+            - checkout
       - build:
           requires:
             - lint
             - lint_css
+            - test
