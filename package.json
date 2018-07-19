@@ -21,6 +21,7 @@
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack --progress --config webpack/prod.config -p"
   },
   "jest": {
+    "verbose": true,
     "moduleFileExtensions": [
       "js",
       "jsx"
@@ -28,9 +29,17 @@
     "moduleNameMapper": {
       "^src(.*)$": "<rooDir>/src$i"
     },
+    "setupFiles": [
+      "<rootDir>/config/test/enzyme.theme.js",
+      "<rootDir>/config/test/fetch.setup.js"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>/config/test/enzyme.setup.js",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/"
     ]
   },
   "repository": {
