@@ -79,11 +79,13 @@ module.exports = {
     },
   },
 
-  copyLoader: [{
-    from: `${paths.public}/**/**`,
-    ignore: [ '*.html' ],
-    to: `${paths.build}/[name].[ext]`
-  }],
+  copyLoader: [
+    {
+      from: `${paths.public}/**/**`,
+      ignore: ['*.html'],
+      to: `${paths.build}/[name].[ext]`,
+    },
+  ],
 
   resolve: {
     alias: {
