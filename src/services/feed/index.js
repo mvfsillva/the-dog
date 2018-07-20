@@ -23,8 +23,8 @@ const list = (token, param) =>
 
 const getId = list => {
   list.map(res => {
-    const regex = /\S+\/(\S+)\.\S+/gm
-    return regex.exec(res)[1]
+    const regex = /(^.*)\/(.*)?\..{3,}$/g
+    return regex.exec(res)[2]
   })
 }
 
