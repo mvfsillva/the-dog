@@ -13,10 +13,10 @@ describe('[User Service]', () => {
   }
 
   it('should resolves with token', async () => {
-    const respose = { token: 'abcdefg' }
-    mockResponse(null, 200, respose)
+    const response = { token: 'abcdefg' }
+    mockResponse(null, 200, response)
     const user = await userService.login('email@client.com')
 
-    expect(user).toEqual(respose)
+    expect(user).toEqual(response)
   })
 })

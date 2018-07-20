@@ -1,7 +1,5 @@
 import config from '../config'
 
-const feedURL = `${config.api.baseUrl}${config.feed.list}`
-
 const configFetch = token => ({
   method: 'GET',
   headers: {
@@ -10,17 +8,26 @@ const configFetch = token => ({
   },
 })
 
-const handleFeed = res =>
-  res.json().then(({ list = [] }) => {
-    list
-  })
-const handleError = () => ({ list: [] })
+const handleURL = (param = 'husky') => {
+  const category = `?category=${param}`
+  return `${config.api.baseUrl}${config.feed.list}${category}`
+}
 
-const list = token =>
-  fetch(feedURL, { qs: { a: 1 } }, configFetch(token))
+const handleError = () => ({ list: [] })
+const handleFeed = res => res.json().then(({ list = [] }) => ({ list }))
+
+const list = (token, param) =>
+  fetch(handleURL(param), configFetch(token))
     .then(handleFeed)
     .catch(handleError)
 
-const feed = { list }
+const getId = list => {
+  list.map(res => {
+    const regex = /\S+\/(\S+)\.\S+/gm
+    return regex.exec(res)[1]
+  })
+}
+
+const feed = { list, getId }
 
 export default feed

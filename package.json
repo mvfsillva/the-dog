@@ -12,11 +12,12 @@
     "lint": "eslint --ext .js src",
     "lint:css": "stylelint './src/**/*.js'",
     "lint:watch": "esw --watch --ext .js src",
+    "lint:all": "npm run lint && npm run lint:css",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "clean": "rimraf build",
-    "precommit": "npm run lint && npm run lint:css; npm run format:check",
+    "precommit": "npm run lint:all && npm run format",
     "build:analyzer": "cross-env ANALYZER=true npm run build",
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack --progress --config webpack/prod.config -p"
   },
