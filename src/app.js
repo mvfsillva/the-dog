@@ -1,6 +1,19 @@
 import React from 'react'
-import Routes from './routes'
+import { injectGlobal, ThemeProvider } from 'styled-components'
 
-const App = () => <Routes />
+import Routes from './routes'
+import theme from './theme'
+
+injectGlobal`
+  body {
+    margin: 0;
+  }
+`
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <Routes />
+  </ThemeProvider>
+)
 
 export default App
