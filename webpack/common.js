@@ -90,6 +90,7 @@ module.exports = {
   resolve: {
     alias: {
       src: paths.src,
+      pages: join(paths.src, 'pages'),
     },
   },
 }
