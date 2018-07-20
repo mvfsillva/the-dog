@@ -16,9 +16,10 @@ const handleURL = (param = 'husky') => {
 const handleError = () => ({ list: [] })
 const handleFeed = res => res.json().then(({ list = [] }) => ({ list }))
 
-const list = (token, param) => fetch(handleURL(param), configFetch(token))
-  .then(handleFeed)
-  .catch(handleError)
+const list = (token, param) =>
+  fetch(handleURL(param), configFetch(token))
+    .then(handleFeed)
+    .catch(handleError)
 
 const getId = list => {
   list.map(res => {
