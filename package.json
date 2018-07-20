@@ -28,7 +28,8 @@
       "jsx"
     ],
     "moduleNameMapper": {
-      "^src(.*)$": "<rooDir>/src$i"
+      "^src(.*)$": "<rooDir>/src$i",
+      "^components/([^\\.]*)$": "<rootDir>/src/components/$1"
     },
     "setupFiles": [
       "<rootDir>/config/test/enzyme.theme.js",

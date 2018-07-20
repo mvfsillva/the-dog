@@ -1,5 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-const Home = () => <h1>Welcome to the world of dogs.</h1>
+import Header from 'components/Header'
+
+const Home = () => (
+  <Fragment>
+    <Header headline="Welcome the Dog world!" />
+  </Fragment>
+)
 
 export default Home
