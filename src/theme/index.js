@@ -10,6 +10,8 @@ const colors = {
     silver: '#C2C1C1',
   },
 
+  white: '#FFF',
+
   gray: {
     default: '#7e7e7e',
     light: '#bfbfbf',
