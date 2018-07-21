@@ -13,17 +13,17 @@ const colors = {
   white: '#FFF',
 
   gray: {
-    default: '#7e7e7e',
-    light: '#bfbfbf',
-    ultraLight: '#f7f7f7',
+    default: '#7E7E7E',
+    light: '#BFBFBF',
+    ultraLight: '#F7F7F7',
 
     // scale
-    '050': '#fafafa',
-    100: '#f5f5f5',
-    200: '#eee',
-    300: '#e0e0e0',
-    400: '#bdbdbd',
-    500: '#9e9e9e',
+    '050': '#FAFAFA',
+    100: '#F5F5F5',
+    200: '#EEE',
+    300: '#E0E0E0',
+    400: '#BDBDBD',
+    500: '#9E9E9E',
     600: '#757575',
     700: '#616161',
     800: '#424242',
@@ -31,9 +31,14 @@ const colors = {
   },
 }
 
+const fonts = {
+  primary: 'Helvetica Neue, Helvetica, Roboto, sans-serif',
+}
+
 export default {
   baselineGrid,
   interfaceGrid,
   breakpoints,
   colors,
+  fonts,
 }
