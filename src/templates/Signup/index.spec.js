@@ -13,9 +13,4 @@ describe('[Template: Signup]', () => {
   it('mounts with different combination props', () => {
     mount(<Signup handleclick={spyClick} />)
   })
-
-  it('matches snapshot', () => {
-    const wrapper = shallow(<Signup />)
-    expect(wrapper).toMatchSnapshot()
-  })
 })
