@@ -13,6 +13,8 @@ const StyledInput = styled.input`
   margin: 5px;
   border-bottom: 1px solid ${props => props.theme.colors.gray['300']};
   outline: snow;
+  font-size: 1.5rem;
+  text-transform: ${props => (props.lowercase ? 'lowercase' : 'capitalize')};
 
   &:hover {
     border-bottom-color: ${props => props.theme.colors.gray['500']};
@@ -33,19 +35,18 @@ const StyledInput = styled.input`
 `
 
 const StyledLabel = styled.label`
-  color: ${props => props.theme.colors.gray['500']};
-  font-size: 1rem;
+  color: ${props => props.theme.colors.gray['700']};
+  font-size: 2rem;
   line-height: 2em;
   margin: 5px;
 `
 
 const Wrapper = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
   label {
     vertical-align: middle;
   }
 `
-
 const TextField = ({ name, label, type, ...props }) => {
   return (
     <Wrapper>
@@ -61,6 +62,7 @@ TextField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  lowercase: PropTypes.bool,
 }
 
 export default TextField
