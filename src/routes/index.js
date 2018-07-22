@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 
-import { Home, Feed, NotFound } from 'pages'
+import { Home, Feed, NotFound } from '@pages'
 
 const Routes = () => (
   <Router>

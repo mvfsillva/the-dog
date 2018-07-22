@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { transitions } from 'polished'
-import { transition } from '../../mixins/style.transtion'
-import If from 'components/common/If'
+
+import { transition } from '@mixins/style.transtion'
+import If from '@components/common/If'
 
 const StyledInput = styled.input`
   background-color: transparent;

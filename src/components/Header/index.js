@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Title from 'components/Title'
-import If from 'components/common/If'
+import Title from '@components/Title'
+import If from '@components/common/If'
 
 const HeaderStyled = styled.div`
   max-width: 140px;
