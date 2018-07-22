@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { transitions } from 'polished'
+import { transition } from '@mixins/style.transtion'
 
 const fontSize = ({ height }) => `${height / 40}rem`
 
@@ -12,13 +14,14 @@ const StyledButton = styled.button`
   border-radius: 0.125em;
   box-sizing: border-box;
   cursor: pointer;
-  transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
   background-color: ${props => (props.outlined ? 'transparent' : props.theme.colors.gray.default)};
   color: ${props => (props.outlined ? props.theme.colors.gray.default : props.theme.colors.white)};
   font-size: ${fontSize};
   font-family: ${props => props.theme.fonts.primary};
   letter-spacing: 3px;
   line-height: 20px;
+  ${transitions(transition({ property: 'background-color', duration: '250ms' }))};
+  ${transitions(transition({ property: 'border-color', duration: '250ms' }))};
 
   &:hover,
   &:focus,
