@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import TextField from 'components/TextField'
+import Button from 'components/Button'
 
 const Content = styled.section`
   width: 100%;
@@ -18,7 +19,9 @@ const Signup = ({ handleclick }) => (
     <form onSubmit={e => console.log(e)}>
       <TextField type="text" name="name" label="Seu Nome" />
       <TextField type="email" name="email" label="E-mail" lowercase />
-      <button onClick={e => handleclick(e)}>Entrar</button>
+      <Button onClick={handleclick} transparent>
+        Entrar
+      </Button>
     </form>
   </Content>
 )
