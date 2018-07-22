@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   }
 
   &:focus {
-    border-bottom-color: ${props => props.theme.colors.primary.default};
+    border-bottom-color: ${props => props.theme.colors.gray.default};
   }
 
   &::placeholder {
@@ -35,14 +35,14 @@ const StyledInput = styled.input`
 `
 
 const StyledLabel = styled.label`
-  color: ${props => props.theme.colors.gray['700']};
-  font-size: 2rem;
-  line-height: 2em;
+  color: ${props => props.theme.colors.gray.mercury};
+  font-size: 1.4rem;
+  line-height: 40px;
   margin: 5px;
 `
 
 const Wrapper = styled.div`
-  margin-bottom: 5rem;
+  margin-bottom: 1.2rem;
   label {
     vertical-align: middle;
   }
