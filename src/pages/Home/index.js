@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Header from 'components/Header'
-import Navigation from 'components/Navigation'
 import Signup from 'templates/Signup'
 
 const Wrapper = styled.div`
@@ -29,7 +28,6 @@ const Home = () => (
   <Wrapper>
     <Content>
       <Header headline="the iddog" uppercase />
-      <Navigation />
     </Content>
     <Signup />
   </Wrapper>
