@@ -10,6 +10,7 @@ const colors = {
     mercury: '#eaeaea',
     chalice: '#a4a4a4',
     silver: '#b9b9b9',
+    hover: '#4b4b4b',
 
     // scale
     '050': '#FAFAFA',
