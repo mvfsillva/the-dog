@@ -78,7 +78,8 @@ jobs:
 
         - run:
             name: Deployment NOW
-            command: yarn now -t ${NOW_TOKEN}
+            command: |
+              yarn now --public -t ${NOW_TOKEN}
 
 workflows:
   version: 2
