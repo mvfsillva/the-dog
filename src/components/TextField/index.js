@@ -22,17 +22,14 @@ const StyledInput = styled.input`
   }
 
   &:focus {
-    border-bottom-color: ${props => props.theme.colors.gray.default};
+    border-bottom-color: ${props => props.theme.colors.gray['500']};
   }
 
   &::placeholder {
     color: ${props => props.theme.colors.gray['600']};
   }
 
-  ${transitions(
-    transition({ property: 'border-color' }),
-    transition({ property: 'padding-left' }),
-  )};
+  ${transitions(transition({ property: 'border-bottom-color' }))};
 `
 
 const StyledLabel = styled.label`
@@ -41,28 +38,42 @@ const StyledLabel = styled.label`
   letter-spacing: 5px;
   line-height: 40px;
   margin: 5px;
+  font-weight: 300;
+
+  input:focus + & {
+    color: ${props => props.theme.colors.gray['500']};
+  }
+
+  input:hover + & {
+    color: ${props => props.theme.colors.gray['500']};
+  }
+
+  ${transitions(transition({ property: 'color' }))};
 `
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
   margin-bottom: 1.2rem;
   label {
     vertical-align: middle;
   }
 `
+
 const TextField = ({ name, label, type, ...props }) => {
   return (
     <Wrapper>
+      <StyledInput id={name} name={name} type={type} {...props} />
       <If test={label}>
         <StyledLabel htmlFor={name}>{label}</StyledLabel>
       </If>
-      <StyledInput id={name} name={name} type={type} {...props} />
     </Wrapper>
   )
 }
 
 TextField.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   lowercase: PropTypes.bool,
 }
