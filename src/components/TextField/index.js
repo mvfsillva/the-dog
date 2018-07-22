@@ -11,6 +11,7 @@ const StyledInput = styled.input`
   padding: 3px 0;
   width: 100%;
   margin: 5px;
+  color: ${props => props.theme.colors.gray.default};
   border-bottom: 1px solid ${props => props.theme.colors.gray['300']};
   outline: snow;
   font-size: 1.5rem;
@@ -37,6 +38,7 @@ const StyledInput = styled.input`
 const StyledLabel = styled.label`
   color: ${props => props.theme.colors.gray.mercury};
   font-size: 1.4rem;
+  letter-spacing: 5px;
   line-height: 40px;
   margin: 5px;
 `
