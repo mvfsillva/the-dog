@@ -14,12 +14,12 @@ const Content = styled.section`
   align-self: center;
 `
 
-const Signup = ({ handleclick }) => (
+const Signup = ({ handleSubmit }) => (
   <Content>
-    <form onSubmit={e => console.log(e)}>
+    <form onSubmit={e => handleSubmit(e)}>
       <TextField type="text" name="name" label="Seu Nome" />
-      <TextField type="email" name="email" label="E-mail" lowercase />
-      <Button onClick={handleclick} outlined>
+      <TextField type="text" name="email" label="E-mail" lowercase />
+      <Button type="submit" outlined>
         Entrar
       </Button>
     </form>
@@ -27,7 +27,7 @@ const Signup = ({ handleclick }) => (
 )
 
 Signup.propTypes = {
-  handleclick: PropTypes.func,
+  handleSubmit: PropTypes.func,
 }
 
 export default Signup
