@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Title from 'components/Title'
-import Button from 'components/Button'
-import FullContainer from 'src/styles/FullContainer'
+import Title from '@components/Title'
+import Button from '@components/Button'
+import FullContainer from '~/styles/FullContainer'
 
 import Bowl from './assets/Bowl'
 
