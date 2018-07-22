@@ -7,7 +7,7 @@ import Button from 'components/Button'
 
 const Content = styled.section`
   width: 100%;
-  max-width: 920px;
+  max-width: 834px;
   display: flex;
   flex-direction: column;
   justify-content: center;
