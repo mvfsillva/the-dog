@@ -4,18 +4,12 @@ const interfaceGrid = 8
 const breakpoints = ['576px', '768px', '992px', '1200px']
 
 const colors = {
-  primary: {
-    gray: '#7F7F7F',
-    mercury: '#E4E4E4',
-    silver: '#C2C1C1',
-  },
-
   white: '#FFF',
-
   gray: {
-    default: '#7E7E7E',
-    light: '#BFBFBF',
-    ultraLight: '#F7F7F7',
+    default: '#838383',
+    mercury: '#eaeaea',
+    chalice: '#a4a4a4',
+    silver: '#b9b9b9',
 
     // scale
     '050': '#FAFAFA',
