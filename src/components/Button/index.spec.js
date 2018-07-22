@@ -12,7 +12,7 @@ const wrap = (props = {}) => shallow(<Button {...props} />).dive()
 describe('[Component: Button]', () => {
   it('mounts with different combination props', () => {
     mount(<Button>Teste</Button>)
-    mount(<Button transparent>Teste</Button>)
+    mount(<Button outlined>Teste</Button>)
   })
 
   it('renders props when passed in', () => {

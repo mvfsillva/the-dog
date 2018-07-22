@@ -19,7 +19,7 @@ const Signup = ({ handleclick }) => (
     <form onSubmit={e => console.log(e)}>
       <TextField type="text" name="name" label="Seu Nome" />
       <TextField type="email" name="email" label="E-mail" lowercase />
-      <Button onClick={handleclick} transparent>
+      <Button onClick={handleclick} outlined>
         Entrar
       </Button>
     </form>

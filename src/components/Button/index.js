@@ -13,10 +13,8 @@ const StyledButton = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
-  background-color: ${props =>
-    props.transparent ? 'transparent' : props.theme.colors.gray.default};
-  color: ${props =>
-    props.transparent ? props.theme.colors.gray.default : props.theme.colors.white};
+  background-color: ${props => (props.outlined ? 'transparent' : props.theme.colors.gray.default)};
+  color: ${props => (props.outlined ? props.theme.colors.gray.default : props.theme.colors.white)};
   font-size: ${fontSize};
   font-family: ${props => props.theme.fonts.primary};
   letter-spacing: 3px;
@@ -26,9 +24,9 @@ const StyledButton = styled.button`
   &:focus,
   &:active {
     background-color: ${props =>
-      props.transparent ? props.theme.colors.gray.default : 'transparent'};
+      props.outlined ? props.theme.colors.gray.default : 'transparent'};
     color: ${props =>
-      props.transparent ? props.theme.colors.white : props.theme.colors.gray.default};
+      props.outlined ? props.theme.colors.white : props.theme.colors.gray.default};
   }
 
   &:focus {
@@ -39,7 +37,7 @@ const StyledButton = styled.button`
 const Button = ({ type, ...props }) => <StyledButton type={type} {...props} />
 
 Button.propTypes = {
-  transparent: PropTypes.bool,
+  outlined: PropTypes.bool,
   height: PropTypes.number,
   type: PropTypes.string,
 }
