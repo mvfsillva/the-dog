@@ -1,5 +1,6 @@
 import config from '../config'
 
+const baseUrl = `${config.api.baseUrl}${config.feed.list}`
 const configFetch = token => ({
   method: 'GET',
   headers: {
@@ -8,16 +9,11 @@ const configFetch = token => ({
   },
 })
 
-const handleURL = (param = 'husky') => {
-  const category = `?category=${param}`
-  return `${config.api.baseUrl}${config.feed.list}${category}`
-}
-
 const handleError = () => ({ list: [] })
 const handleFeed = res => res.json().then(({ list = [] }) => ({ list }))
 
 const list = (token, param) =>
-  fetch(handleURL(param), configFetch(token))
+  fetch(`${baseUrl}${param}`, configFetch(token))
     .then(handleFeed)
     .catch(handleError)
 
