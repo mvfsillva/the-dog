@@ -44,6 +44,12 @@ const Container = styled.div`
   align-items: center;
 `
 
+const ImageRender = styled.div`
+  background-image: url(${props => props.image});
+  background-size: cover;
+  height: 360px;
+`
+
 const formatId = dog => {
   const regex = /(^.*)\/(.*)?\..{3,}$/g
   return regex.exec(dog)[2]
@@ -62,7 +68,7 @@ const Card = ({ data }) => (
             transitionEnter={false}
             transitionLeave={false}
           >
-            <img src={dog} />
+            <ImageRender image={dog} />
           </CSSTransitionGroup>
         </LazyLoad>
       </Panel>
