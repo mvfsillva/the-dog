@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import Header from '@components/Header'
+import Title from '@components/Title'
 import Navigation from '@components/Navigation'
 import Spinner from '@components/Spinner'
 import Card from '@components/Card'
@@ -18,6 +19,7 @@ class Feed extends Component {
       data: [],
       isLoading: true,
       isAuthenticated: true,
+      activeFilter: '?category=husky',
     }
   }
 
@@ -27,16 +29,25 @@ class Feed extends Component {
 
   getFeed = async () => {
     const token = localStorage.getItem('token')
+    const { activeFilter } = this.state
+
     if (!token) {
       return this.setState({ isAuthenticated: false, isLoading: false })
     }
-    return await feedService.list(token).then(({ list }) => {
+
+    return await feedService.list(token, activeFilter).then(({ list }) => {
       this.props.history.push('/feed')
       this.setState({ data: list, isAuthenticated: true, isLoading: false })
     })
   }
 
-  getUser = () => {}
+  handleCategory = async breed => {
+    await this.setState({
+      activeFilter: `?category=${breed}`,
+      isLoading: true,
+    })
+    this.getFeed()
+  }
 
   render() {
     const { data, isLoading, isAuthenticated } = this.state
@@ -47,12 +58,14 @@ class Feed extends Component {
       <HeaderWrapper>
         <Content>
           <Header headline={userService.get('name')} uppercase />
-          <Navigation />
+          <Navigation handleCategory={this.handleCategory} />
         </Content>
         <If test={isLoading}>
           <Spinner />
         </If>
-        <Card data={data} />
+        <If test={!isLoading}>
+          <Card data={data} />
+        </If>
       </HeaderWrapper>
     )
   }
