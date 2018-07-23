@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Nav = styled.nav`
   display: flex;
@@ -26,7 +25,7 @@ const Nav = styled.nav`
     }
 
     .active {
-      color: ${props => props.theme.colors.gray.hover};
+      color: red;
     }
   }
 
@@ -36,12 +35,23 @@ const Nav = styled.nav`
 `
 
 const Navigation = ({ ...props }) => (
-  <Nav {...props}>
-    <Link to="?category=husky">Husky</Link>
-    <Link to="?category=labrador">Labrador</Link>
-    <Link to="?category=hound">Hound</Link>
-    <Link to="?category=pug">Pug</Link>
-  </Nav>
+  <Fragment>
+    <Nav {...props}>
+      {['husky', 'labrador', 'hound', 'pug'].map(breed => (
+        <NavLink
+          key={breed}
+          onClick={() => props.handleCategory(breed)}
+          to={{ pathname: '/feed', state: { category: breed } }}
+          activeClassName="active"
+        >
+          {breed}
+        </NavLink>
+      ))}
+      <NavLink to="/" onClick={props.handleClick}>
+        Sair
+      </NavLink>
+    </Nav>
+  </Fragment>
 )
 
 export default Navigation
