@@ -4,30 +4,15 @@ import styled from 'styled-components'
 import KeyHandler from 'react-key-handler'
 import If from '@components/common/If'
 
-const Overlay = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
-  display: block;
-  height: 100%;
-  left: 0;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  width: 100%;
-`
-
 const ModalContainer = styled.div`
-  align-items: center;
-  bottom: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  left: 0;
-  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
-  right: 0;
   top: 0;
-  z-index: 1030;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const ModalContent = styled.div`
@@ -41,29 +26,8 @@ const ModalContent = styled.div`
 
 const ModalDialog = styled.div`
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
   background-color: ${props => props.theme.colors.white};
-  border-radius: 0.125em;
   color: ${props => props.theme.colors.gray[500]};
-  top: calc(-40% - 1rem);
-  left: calc(50% - 1rem);
-  right: auto;
-  bottom: auto;
-  margin: 1rem calc(-50% + 1rem) 1rem 1rem;
-  transform: translate(-50%, 100%);
-  transition: transform 250ms ease-in-out;
-  outline: none;
-  box-sizing: border-box;
-  min-width: 320px;
-  max-width: calc(640px - 1rem);
-  max-height: calc(100% - 1rem);
-  @media screen and (max-width: 640px) {
-    top: 0;
-    width: calc(100% - 1rem);
-    min-width: 0;
-  }
 `
 
 const ModalCloseButton = styled.a`
@@ -101,10 +65,9 @@ const Modal = ({ id, children, closeable, onClose, open }) => {
   if (!open) return null
 
   return (
-    <ModalContainer id={id}>
+    <ModalContainer id={id} onClick={onClose}>
       <KeyHandler keyEventName="keydown" keyValue="Escape" onKeyHandle={onClose} />
-      <Overlay onClick={onClose} />
-      <ModalDialog onRequestClose={onClose}>
+      <ModalDialog onClick={onClose}>
         <If test={closeable}>
           <ModalCloseButton onClick={onClose} />
         </If>
