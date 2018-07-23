@@ -1,4 +1,4 @@
-import React, { Component } from 'React'
+import React, { Component } from 'react'
 
 import Header from '@components/Header'
 import Navigation from '@components/Navigation'
