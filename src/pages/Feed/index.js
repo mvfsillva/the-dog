@@ -14,7 +14,6 @@ import ImageRender from '~/styles/ImageRender'
 
 import feedService from '~/services/feed'
 import userService from '~/services/user'
-import { formatId } from '~/utils'
 
 class Feed extends Component {
   constructor(props) {
@@ -24,7 +23,6 @@ class Feed extends Component {
       isLoading: true,
       isAuthenticated: true,
       activeFilter: '?category=husky',
-      isOpen: true,
     }
   }
 
@@ -54,12 +52,10 @@ class Feed extends Component {
     this.getFeed()
   }
 
-  handleCloseModal = () => {
-    console.log('Props:', this.props)
-  }
+  handleCloseModal = () => this.props.history.push('/feed')
 
   render() {
-    const { data, isLoading, isAuthenticated, isOpen } = this.state
+    const { data, isLoading, isAuthenticated } = this.state
     const { id, url } = this.props.location.state || {}
 
     if (!isAuthenticated) return <Redirect to="/" />
@@ -75,7 +71,7 @@ class Feed extends Component {
         </If>
         <If test={!isLoading}>
           <Card data={data} />
-          <Modal open={id} closeable onClose={this.handleCloseModal}>
+          <Modal open={!!id} closeable onClose={this.handleCloseModal}>
             <ImageRender image={url} width={620} height={460} />
           </Modal>
         </If>
