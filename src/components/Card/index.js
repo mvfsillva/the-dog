@@ -1,12 +1,15 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import tag from 'clean-tag'
 import LazyLoad from 'react-lazyload'
 import { CSSTransitionGroup } from 'react-transition-group'
+import { Link } from 'react-router-dom'
 
+import ImageRender from '~/styles/ImageRender'
 import { transitions } from 'polished'
 import { transition } from '@mixins/transition'
+import { formatId } from '@utils'
 
 const Panel = styled(tag).attrs({ bg: 'white' })`
   border: solid 1px #e9eef0;
@@ -16,14 +19,15 @@ const Panel = styled(tag).attrs({ bg: 'white' })`
   width: 320px;
   height: 360px;
   padding: 10px;
-  margin: 10px 0 0 10px;
-  img {
-    width: 320px;
-    height: 360px;
-  }
-
+  margin: 20px 0 0 20px;
+  cursor: pointer;
+  ${transitions(transition({ property: 'box-shadow' }))};
   .fade-appear {
     opacity: 0.01;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.19);
   }
 
   .fade-appear.fade-appear-active {
@@ -44,22 +48,11 @@ const Container = styled.div`
   align-items: center;
 `
 
-const ImageRender = styled.div`
-  background-image: url(${props => props.image});
-  background-size: cover;
-  height: 360px;
-`
-
-const formatId = dog => {
-  const regex = /(^.*)\/(.*)?\..{3,}$/g
-  return regex.exec(dog)[2]
-}
-
-const Card = ({ data }) => (
-  <Container>
-    {data.map(dog => (
+const Card = ({ data, handleOpenImage, ...props }) => (
+  <Container {...props}>
+    {data.list.map(dog => (
       <Panel key={formatId(dog)}>
-        <LazyLoad throttle={200} height={300}>
+        <LazyLoad throttle={300} height={600}>
           <CSSTransitionGroup
             key="1"
             transitionName="fade"
@@ -68,7 +61,15 @@ const Card = ({ data }) => (
             transitionEnter={false}
             transitionLeave={false}
           >
-            <ImageRender image={dog} />
+            <Link
+              to={{
+                pathname: '/feed',
+                search: `category=${data.category}&id=${formatId(dog)}`,
+                state: { id: formatId(dog), url: dog },
+              }}
+            >
+              <ImageRender image={dog} height={360} />
+            </Link>
           </CSSTransitionGroup>
         </LazyLoad>
       </Panel>
@@ -77,7 +78,11 @@ const Card = ({ data }) => (
 )
 
 Card.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.any,
+}
+
+Card.defaultProps = {
+  data: {},
 }
 
 export default Card

@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import Header from '@components/Header'
-import Title from '@components/Title'
-import Navigation from '@components/Navigation'
-import Spinner from '@components/Spinner'
-import Card from '@components/Card'
-import If from '@components/common/If'
+
+import Header from '~/components/Header'
+import Navigation from '~/components/Navigation'
+import Spinner from '~/components/Spinner'
+import Card from '~/components/Card'
+import Modal from '~/components/Modal'
+import If from '~/components/common/If'
+
 import { HeaderWrapper } from '~/styles/Wrapper'
 import Content from '~/styles/Content'
+import ImageRender from '~/styles/ImageRender'
 
 import feedService from '~/services/feed'
 import userService from '~/services/user'
+import { formatId } from '~/utils'
 
 class Feed extends Component {
   constructor(props) {
@@ -20,6 +24,7 @@ class Feed extends Component {
       isLoading: true,
       isAuthenticated: true,
       activeFilter: '?category=husky',
+      isOpen: true,
     }
   }
 
@@ -35,9 +40,9 @@ class Feed extends Component {
       return this.setState({ isAuthenticated: false, isLoading: false })
     }
 
-    return await feedService.list(token, activeFilter).then(({ list }) => {
+    return await feedService.list(token, activeFilter).then(data => {
       this.props.history.push('/feed')
-      this.setState({ data: list, isAuthenticated: true, isLoading: false })
+      this.setState({ data, isAuthenticated: true, isLoading: false })
     })
   }
 
@@ -49,8 +54,13 @@ class Feed extends Component {
     this.getFeed()
   }
 
+  handleCloseModal = () => {
+    console.log('Props:', this.props)
+  }
+
   render() {
-    const { data, isLoading, isAuthenticated } = this.state
+    const { data, isLoading, isAuthenticated, isOpen } = this.state
+    const { id, url } = this.props.location.state || {}
 
     if (!isAuthenticated) return <Redirect to="/" />
 
@@ -65,6 +75,9 @@ class Feed extends Component {
         </If>
         <If test={!isLoading}>
           <Card data={data} />
+          <Modal open={id} closeable onClose={this.handleCloseModal}>
+            <ImageRender image={url} width={620} height={460} />
+          </Modal>
         </If>
       </HeaderWrapper>
     )

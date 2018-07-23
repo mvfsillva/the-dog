@@ -6,7 +6,6 @@ import Title from '@components/Title'
 import If from '@components/common/If'
 
 const HeaderStyled = styled.div`
-  max-width: 140px;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -22,6 +21,9 @@ const HeaderStyled = styled.div`
   .thedog {
     text-align: center;
     font-size: 24px;
+    word-wrap: break-word;
+    width: 140px;
+    margin: 10px;
   }
 `
 

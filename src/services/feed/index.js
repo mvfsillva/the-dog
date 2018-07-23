@@ -10,7 +10,7 @@ const configFetch = token => ({
 })
 
 const handleError = () => ({ list: [] })
-const handleFeed = res => res.json().then(({ list = [] }) => ({ list }))
+const handleFeed = res => res.json().then(({ category, list = [] }) => ({ category, list }))
 
 const list = (token, param) =>
   fetch(`${baseUrl}${param}`, configFetch(token))

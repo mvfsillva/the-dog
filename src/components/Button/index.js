@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { transitions } from 'polished'
-import { transition } from '@mixins/transition'
+import { transition } from '~/mixins/transition'
 
 const fontSize = ({ height }) => `${height / 40}rem`
 
