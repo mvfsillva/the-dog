@@ -20,12 +20,12 @@ const saveUser = ({ email, name }) => {
   localStorage.setItem('name', name)
 }
 
-const getUser = key => localStorage.getItem(key)
+const get = key => localStorage.getItem(key)
 
 const user = {
   login,
   saveUser,
-  getUser,
+  get,
 }
 
 export default user
