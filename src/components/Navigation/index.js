@@ -18,7 +18,7 @@ const Nav = styled.nav`
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 5px;
-    color: ${props => props.theme.colors.gray.mercury};
+    color: ${props => props.theme.colors.gray.chalice};
     transition: 0.3s;
 
     &:hover {

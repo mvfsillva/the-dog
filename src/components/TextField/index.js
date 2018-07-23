@@ -12,18 +12,18 @@ const StyledInput = styled.input`
   padding: 3px 0;
   width: 100%;
   margin: 5px;
-  color: ${props => props.theme.colors.gray.default};
-  border-bottom: 1px solid ${props => props.theme.colors.gray['300']};
+  color: ${props => props.theme.colors.gray['600']};
+  border-bottom: 1px solid ${props => props.theme.colors.gray['500']};
   outline: snow;
   font-size: 1.5rem;
   text-transform: ${props => (props.lowercase ? 'lowercase' : 'capitalize')};
 
   &:hover {
-    border-bottom-color: ${props => props.theme.colors.gray['500']};
+    border-bottom-color: ${props => props.theme.colors.gray['900']};
   }
 
   &:focus {
-    border-bottom-color: ${props => props.theme.colors.gray['500']};
+    border-bottom-color: ${props => props.theme.colors.gray['900']};
   }
 
   &::placeholder {
@@ -34,7 +34,7 @@ const StyledInput = styled.input`
 `
 
 const StyledLabel = styled.label`
-  color: ${props => props.theme.colors.gray.mercury};
+  color: ${props => props.theme.colors.gray['500']};
   font-size: 1.4rem;
   letter-spacing: 5px;
   line-height: 40px;
@@ -42,11 +42,11 @@ const StyledLabel = styled.label`
   font-weight: 300;
 
   input:focus + & {
-    color: ${props => props.theme.colors.gray['500']};
+    color: ${props => props.theme.colors.gray['900']};
   }
 
   input:hover + & {
-    color: ${props => props.theme.colors.gray['500']};
+    color: ${props => props.theme.colors.gray['900']};
   }
 
   ${transitions(transition({ property: 'color' }))};

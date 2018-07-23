@@ -7,6 +7,9 @@ import theme from './theme'
 injectGlobal`
   body {
     margin: 0;
+    background: #FFF;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.004);
   }
 `
 

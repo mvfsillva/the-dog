@@ -15,6 +15,7 @@ const HeaderStyled = styled.div`
   border: 5px solid;
   padding: 10px 0;
   letter-spacing: 5px;
+  line-height: 40px;
   text-transform: ${props => (props.uppercase ? 'uppercase' : 'capitalize')};
   color: ${props => props.theme.colors.gray.default};
 
