@@ -113,6 +113,7 @@
     "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
+    "clean-tag": "^2.0.0",
     "form-serialize": "^0.7.2",
     "grid-styled": "^5.0.2",
     "polished": "^1.9.3",

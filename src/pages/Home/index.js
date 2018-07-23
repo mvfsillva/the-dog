@@ -9,7 +9,7 @@ import { Wrapper } from '~/styles/Wrapper'
 import Content from '~/styles/Content'
 
 import authService from '~/services/auth'
-import userService from '~/services/signup'
+import userService from '~/services/user'
 
 class Home extends Component {
   constructor(props) {
@@ -22,18 +22,18 @@ class Home extends Component {
     }
   }
 
-  login = data => {
+  login = async data => {
     const { email } = data
-    userService.login(email).then(({ user, error }) => {
+    await userService.login(email).then(({ user, error }) => {
       this.setState({ isLoading: true })
       return error ? this.loginError(error) : this.loginSuccess(data, user.token)
     })
   }
 
   loginSuccess = (data, token) => {
-    this.setState({ isAuthenticated: true, isLoading: false, isCredentialsError: false })
     localStorage.setItem('token', token)
     userService.saveUser(data)
+    this.setState({ isAuthenticated: true, isLoading: false, isCredentialsError: false })
   }
 
   loginError = isCredentialsError =>
@@ -52,7 +52,7 @@ class Home extends Component {
     const { isLoading, isAuthenticated } = this.state
     const { from = { pathname: '/feed' } } = this.props.location.state || {}
 
-    if (isAuthenticated) return <Redirect to={from} />
+    if (isAuthenticated) return <Redirect to="/feed" />
 
     return (
       <Wrapper>

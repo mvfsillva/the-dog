@@ -1,7 +1,5 @@
 const isAuthenticated = () => !!localStorage.getItem('token')
 
-const auth = {
-  isAuthenticated,
-}
+const auth = { isAuthenticated }
 
 export default auth

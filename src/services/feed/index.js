@@ -21,13 +21,6 @@ const list = (token, param) =>
     .then(handleFeed)
     .catch(handleError)
 
-const getId = list => {
-  list.map(res => {
-    const regex = /(^.*)\/(.*)?\..{3,}$/g
-    return regex.exec(res)[2]
-  })
-}
-
-const feed = { list, getId }
+const feed = { list }
 
 export default feed
