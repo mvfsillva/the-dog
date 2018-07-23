@@ -7,10 +7,10 @@ import Signup from '.'
 const shallow = shallowWithTheme(theme)
 const mount = mountWithTheme(theme)
 const spyClick = jest.fn()
-const wrap = (props = {}) => shallow(<Signup handleclick={spyClick} {...props} />)
+const wrap = (props = {}) => shallow(<Signup handleSubmit={spyClick} {...props} />)
 
 describe('[Template: Signup]', () => {
   it('mounts with different combination props', () => {
-    mount(<Signup handleclick={spyClick} />)
+    mount(<Signup handleSubmit={spyClick} />)
   })
 })

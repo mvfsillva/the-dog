@@ -15,9 +15,9 @@ const login = email =>
     .then(res => res.json())
     .catch(err => console.error(err))
 
-const saveUser = ({ email, ...user }) => {
+const saveUser = ({ email, name }) => {
   localStorage.setItem('email', email)
-  Object.entries(user).forEach(([key, value]) => localStorage.setItem(key, value))
+  localStorage.setItem('name', name)
 }
 
 const getUser = key => localStorage.getItem(key)

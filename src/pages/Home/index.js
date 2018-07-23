@@ -1,36 +1,68 @@
-import React from 'react'
-import styled from 'styled-components'
-import Header from 'components/Header'
-import Signup from 'templates/Signup'
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import serializeForm from 'form-serialize'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 3.75rem;
-  min-height: 100vh;
-  box-sizing: border-box;
-  justify-content: center;
-  align-self: center;
-  font-family: ${props => props.theme.fonts.primary};
-  @media screen and (max-width: 640px) {
-    padding-top: 3.25rem;
+import Header from '@components/Header'
+import Signup from '@templates/Signup'
+
+import { Wrapper } from '~/styles/Wrapper'
+import Content from '~/styles/Content'
+
+import authService from '~/services/auth'
+import userService from '~/services/signup'
+
+class Home extends Component {
+  constructor(props) {
+    super(props)
+    const isAuthenticated = authService.isAuthenticated()
+    this.state = {
+      isLoading: false,
+      isCredentialsError: false,
+      isAuthenticated,
+    }
   }
-`
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 3rem;
-`
+  login = data => {
+    const { email } = data
+    userService.login(email).then(({ user, error }) => {
+      this.setState({ isLoading: true })
+      return error ? this.loginError(error) : this.loginSuccess(data, user.token)
+    })
+  }
 
-const Home = () => (
-  <Wrapper>
-    <Content>
-      <Header headline="the iddog" uppercase />
-    </Content>
-    <Signup />
-  </Wrapper>
-)
+  loginSuccess = (data, token) => {
+    this.setState({ isAuthenticated: true, isLoading: false, isCredentialsError: false })
+    localStorage.setItem('token', token)
+    userService.saveUser(data)
+  }
+
+  loginError = isCredentialsError =>
+    this.setState({
+      isCredentialsError,
+      isLoading: false,
+    })
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const data = serializeForm(e.target, { hash: true })
+    this.login(data)
+  }
+
+  render() {
+    const { isLoading, isAuthenticated } = this.state
+    const { from = { pathname: '/feed' } } = this.props.location.state || {}
+
+    if (isAuthenticated) return <Redirect to={from} />
+
+    return (
+      <Wrapper>
+        <Content>
+          <Header headline="the iddog" uppercase />
+        </Content>
+        <Signup handleSubmit={this.handleSubmit} />
+      </Wrapper>
+    )
+  }
+}
 
 export default Home

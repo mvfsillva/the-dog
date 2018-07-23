@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import KeyHandler from 'react-key-handler'
-import If from 'components/common/If'
+import If from '@components/common/If'
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
