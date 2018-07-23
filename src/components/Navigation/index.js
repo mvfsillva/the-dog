@@ -41,7 +41,11 @@ const Navigation = ({ ...props }) => (
         <NavLink
           key={breed}
           onClick={() => props.handleCategory(breed)}
-          to={{ pathname: '/feed', state: { category: breed } }}
+          to={{
+            pathname: '/feed',
+            search: `?category=${breed}`,
+            state: { category: breed },
+          }}
           activeClassName="active"
         >
           {breed}
