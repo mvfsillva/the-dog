@@ -55,7 +55,9 @@ jobs:
           at: ~/workspace
       - run:
           name: Test React components and generate coverage report
-          command: yarn test:coverage --ci
+          command: |
+            yarn test:coverage --ci
+            yarn coveralls
       - persist_to_workspace:
           <<: *to_persist
 
