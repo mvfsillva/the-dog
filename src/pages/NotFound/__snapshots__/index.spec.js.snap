@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Page: NotFound] matches snapshot 1`] = `
+<styled.div>
+  <Bowl />
+  <Styled(Title)
+    size="h2"
+  >
+    Desculpe, mas essa página não existe.
+  </Styled(Title)>
+  <Button
+    height={40}
+    onClick={[Function]}
+    outlined={true}
+    type="button"
+  >
+    Voltar para o inicio
+  </Button>
+</styled.div>
+`;

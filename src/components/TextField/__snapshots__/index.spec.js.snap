@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component: TextField] matches snapshot 1`] = `
+<styled.div>
+  <styled.input
+    invalid={false}
+  >
+    TextField component
+  </styled.input>
+  <If>
+    <styled.label />
+  </If>
+</styled.div>
+`;

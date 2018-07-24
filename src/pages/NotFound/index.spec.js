@@ -29,4 +29,8 @@ describe('[Page: NotFound]', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
+
+  it('matches snapshot', () => {
+    expect(wrap).toMatchSnapshot()
+  })
 })

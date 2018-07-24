@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import ImageRender from '~/styles/ImageRender'
 import { transitions } from 'polished'
 import { transition } from '@mixins/transition'
-import { formatId } from '@utils'
+import { formatId } from '~/utils'
 
 const Panel = styled(tag).attrs({ bg: 'white' })`
   border: solid 1px #e9eef0;
@@ -48,7 +48,7 @@ const Container = styled.div`
   align-items: center;
 `
 
-const Card = ({ data, handleOpenImage, ...props }) => (
+const Card = ({ data, ...props }) => (
   <Container {...props}>
     {data.list.map(dog => (
       <Panel key={formatId(dog)}>

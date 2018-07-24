@@ -32,4 +32,9 @@ describe('[Component: Spinner]', () => {
     const lottieProps = spinner.find(`.${LOTTIE_CLASSNAME}`).props()
     expect(lottieProps.options).toEqual({ animationData: animation, loop, autoplay })
   })
+
+  it('matches snapshot', () => {
+    const wrapper = mount(<Spinner />)
+    expect(wrapper).toMatchSnapshot()
+  })
 })

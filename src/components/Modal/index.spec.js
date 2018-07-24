@@ -10,4 +10,9 @@ describe('[Component: Modal]', () => {
     mount(<Modal onClose={onClose} />)
     mount(<Modal onClose={onClose} closeable />)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<Modal>Modal component</Modal>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })

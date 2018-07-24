@@ -9,4 +9,9 @@ describe('[Component: Title]', () => {
     const title = shallow(<Title size={size}>{text}</Title>)
     expect(title.find(size).text()).toBe(text)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<Title>Title component</Title>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })
