@@ -28,4 +28,9 @@ describe('[Component: TextField]', () => {
     const wrapper = wrap({ label: 'foo label' })
     expect(wrapper.contains('foo label')).toBe(true)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<TextField>TextField component</TextField>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })

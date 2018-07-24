@@ -30,4 +30,9 @@ describe('[Component: Header]', () => {
     const wrapper = wrap({ id: 'foo' })
     expect(wrapper.find({ id: 'foo' })).toHaveLength(1)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<Header>Header component</Header>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })

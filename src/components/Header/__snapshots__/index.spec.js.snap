@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Component: Header] matches snapshot 1`] = `
+<styled.div
+  className={null}
+  hero={false}
+  id={null}
+  uppercase={false}
+>
+  <Title
+    className="thedog"
+    color="grayscale"
+    size="h1"
+  />
+  <If
+    test={null}
+  >
+    <Title
+      color="grayscale"
+      size="h2"
+    />
+  </If>
+</styled.div>
+`;
