@@ -1,6 +1,7 @@
 # The Dog
 
 [![CircleCI](https://circleci.com/gh/mvfsillva/the-dog.svg?style=svg&circle-token=5c4f5d9a1e009d2747932aa67761ebb7645d3634)](https://circleci.com/gh/mvfsillva/the-dog)
+[![Coverage Status](https://coveralls.io/repos/github/mvfsillva/the-dog/badge.svg?branch=master)](https://coveralls.io/github/mvfsillva/the-dog?branch=master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ---
 
