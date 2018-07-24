@@ -45,4 +45,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* Inspiration for the layout: (http://raphamorim.io/)[http://raphamorim.io/]
+* Inspiration for the layout: [http://raphamorim.io/](http://raphamorim.io/)
