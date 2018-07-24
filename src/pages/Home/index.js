@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import serializeForm from 'form-serialize'
 
-import Header from '@components/Header'
-import Signup from '@templates/Signup'
+import Header from '~/components/Header'
+import Signup from '~/templates/Signup'
 
 import { Wrapper } from '~/styles/Wrapper'
 import Content from '~/styles/Content'

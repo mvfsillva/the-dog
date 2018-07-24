@@ -14,6 +14,8 @@ describe('[Component: Header]', () => {
     mount(<Header headline="headline" />)
     mount(<Header headline="headline" subtitle="subtitle" />)
     mount(<Header headline="headline" uppercase />)
+    mount(<Header headline="headline" hero />)
+    mount(<Header headline="headline" subtitle="subtitle" uppercase hero />)
   })
 
   it('renders headline when passed in', () => {

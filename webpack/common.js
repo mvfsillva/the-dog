@@ -90,11 +90,6 @@ module.exports = {
   resolve: {
     alias: {
       src: paths.src,
-      '@pages': join(paths.src, 'pages'),
-      '@components': join(paths.src, 'components'),
-      '@templates': join(paths.src, 'templates'),
-      '@mixins': join(paths.src, 'mixins'),
-      '@utils': join(paths.src, 'utils'),
     },
   },
 }

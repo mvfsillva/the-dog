@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import TextField from '@components/TextField'
-import Button from '@components/Button'
-import Either from '@components/common/Either'
+import TextField from '~/components/TextField'
+import Button from '~/components/Button'
+import Either from '~/components/common/Either'
 
 const Content = styled.section`
   width: 100%;

@@ -5,11 +5,11 @@ import tag from 'clean-tag'
 import LazyLoad from 'react-lazyload'
 import { CSSTransitionGroup } from 'react-transition-group'
 import { Link } from 'react-router-dom'
+import { transitions } from 'polished'
 
 import ImageRender from '~/styles/ImageRender'
-import { transitions } from 'polished'
-import { transition } from '@mixins/transition'
-import { formatId } from '@utils'
+import { transition } from '~/mixins/transition'
+import { formatId } from '~/utils'
 
 const Panel = styled(tag).attrs({ bg: 'white' })`
   border: solid 1px #e9eef0;
@@ -22,6 +22,7 @@ const Panel = styled(tag).attrs({ bg: 'white' })`
   margin: 20px 0 0 20px;
   cursor: pointer;
   ${transitions(transition({ property: 'box-shadow' }))};
+
   .fade-appear {
     opacity: 0.01;
   }
@@ -48,16 +49,16 @@ const Container = styled.div`
   align-items: center;
 `
 
-const Card = ({ data, handleOpenImage, ...props }) => (
+const Card = ({ data, ...props }) => (
   <Container {...props}>
     {data.list.map(dog => (
       <Panel key={formatId(dog)}>
-        <LazyLoad throttle={300} height={600}>
+        <LazyLoad throttle={300} height={400}>
           <CSSTransitionGroup
             key="1"
             transitionName="fade"
             transitionAppear
-            transitionAppearTimeout={600}
+            transitionAppearTimeout={650}
             transitionEnter={false}
             transitionLeave={false}
           >
