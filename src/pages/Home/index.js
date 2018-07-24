@@ -18,6 +18,7 @@ class Home extends Component {
     this.state = {
       isLoading: false,
       isCredentialsError: false,
+      hasError: false,
       isAuthenticated,
     }
   }
@@ -30,7 +31,7 @@ class Home extends Component {
     })
   }
 
-  loginSuccess = (data, token) => {
+  loginSuccess = async (data, token) => {
     localStorage.setItem('token', token)
     userService.saveUser(data)
     this.setState({ isAuthenticated: true, isLoading: false, isCredentialsError: false })
@@ -39,6 +40,7 @@ class Home extends Component {
   loginError = isCredentialsError =>
     this.setState({
       isCredentialsError,
+      hasError: true,
       isLoading: false,
     })
 
@@ -49,17 +51,17 @@ class Home extends Component {
   }
 
   render() {
-    const { isLoading, isAuthenticated } = this.state
+    const { isLoading, hasError, isAuthenticated } = this.state
     const { from = { pathname: '/feed' } } = this.props.location.state || {}
 
-    if (isAuthenticated) return <Redirect to="/feed" />
+    if (isAuthenticated) return <Redirect to={from} />
 
     return (
       <Wrapper>
         <Content>
-          <Header headline="the iddog" uppercase />
+          <Header headline="the iddog" uppercase hero />
         </Content>
-        <Signup handleSubmit={this.handleSubmit} />
+        <Signup handleSubmit={this.handleSubmit} error={hasError} loading={isLoading} />
       </Wrapper>
     )
   }

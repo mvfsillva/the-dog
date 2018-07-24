@@ -54,6 +54,12 @@ class Feed extends Component {
 
   handleCloseModal = () => this.props.history.push('/feed')
 
+  handleSignout = () => {
+    console.log('cliquei')
+    userService.signout()
+    this.props.history.push('/')
+  }
+
   render() {
     const { data, isLoading, isAuthenticated } = this.state
     const { id, url } = this.props.location.state || {}
@@ -63,8 +69,11 @@ class Feed extends Component {
     return (
       <HeaderWrapper>
         <Content>
-          <Header headline={userService.get('name')} uppercase />
-          <Navigation handleCategory={this.handleCategory} />
+          <Header headline={userService.get('name')} uppercase hero />
+          <Navigation handleCategory={this.handleCategory} handleSignout={this.handleSignout} />
+        </Content>
+        <Content>
+          <Header subtitle={data.category} />
         </Content>
         <If test={isLoading}>
           <Spinner />

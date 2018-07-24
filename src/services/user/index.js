@@ -21,11 +21,13 @@ const saveUser = ({ email, name }) => {
 }
 
 const get = key => localStorage.getItem(key)
+const signout = () => localStorage.clear()
 
 const user = {
   login,
   saveUser,
   get,
+  signout,
 }
 
 export default user

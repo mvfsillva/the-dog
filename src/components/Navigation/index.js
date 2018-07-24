@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 const Nav = styled.nav`
   display: flex;
@@ -34,6 +34,10 @@ const Nav = styled.nav`
   }
 `
 
+const StyledLink = styled.a`
+  cursor: pointer;
+`
+
 const Navigation = ({ ...props }) => (
   <Fragment>
     <Nav {...props}>
@@ -43,7 +47,6 @@ const Navigation = ({ ...props }) => (
           onClick={() => props.handleCategory(breed)}
           to={{
             pathname: '/feed',
-            search: `?category=${breed}`,
             state: { category: breed },
           }}
           activeClassName="active"
@@ -51,9 +54,7 @@ const Navigation = ({ ...props }) => (
           {breed}
         </NavLink>
       ))}
-      <NavLink to="/" onClick={props.handleClick}>
-        Sair
-      </NavLink>
+      <StyledLink onClick={props.handleSignout}>Sair</StyledLink>
     </Nav>
   </Fragment>
 )

@@ -20,6 +20,7 @@ const StyledButton = styled.button`
   font-family: ${props => props.theme.fonts.primary};
   letter-spacing: 3px;
   line-height: 20px;
+  margin: 5px;
   ${transitions(transition({ property: 'background-color', duration: '250ms' }))};
   ${transitions(transition({ property: 'border-color', duration: '250ms' }))};
 
