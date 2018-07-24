@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import TextField from '@components/TextField'
 import Button from '@components/Button'
+import Either from '@components/common/Either'
 
 const Content = styled.section`
   width: 100%;
@@ -14,13 +15,13 @@ const Content = styled.section`
   align-self: center;
 `
 
-const Signup = ({ handleSubmit }) => (
+const Signup = ({ handleSubmit, error, loading }) => (
   <Content>
     <form onSubmit={e => handleSubmit(e)}>
-      <TextField type="text" name="name" label="Seu Nome" />
-      <TextField type="text" name="email" label="E-mail" lowercase />
+      <TextField type="text" name="name" label="Seu Nome" required />
+      <TextField type="text" name="email" label="E-mail" lowercase invalid={error} required />
       <Button type="submit" outlined>
-        Entrar
+        <Either when={loading} right={'...'} left={'Entrar'} />
       </Button>
     </form>
   </Content>
@@ -28,6 +29,12 @@ const Signup = ({ handleSubmit }) => (
 
 Signup.propTypes = {
   handleSubmit: PropTypes.func,
+  error: PropTypes.bool,
+  loading: PropTypes.bool,
+}
+
+Signup.defaultProps = {
+  loading: false,
 }
 
 export default Signup
