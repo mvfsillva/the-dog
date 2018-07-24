@@ -28,4 +28,9 @@ describe('[Component: Either]', () => {
     expect(either.find('.correct')).toHaveLength(0)
     expect(either.find('.failed')).toHaveLength(1)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<Either>Either component</Either>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })

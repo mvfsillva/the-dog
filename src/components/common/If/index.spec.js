@@ -22,4 +22,9 @@ describe('[Component: If]', () => {
     )
     expect(component.find('.rendered')).toHaveLength(0)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<If>If component</If>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })

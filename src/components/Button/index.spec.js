@@ -24,4 +24,9 @@ describe('[Component: Button]', () => {
     const wrapper = wrap()
     expect(wrapper.find('button')).toHaveLength(1)
   })
+
+  it('matches snapshot', () => {
+    const wrapper = shallow(<Button>Button component</Button>)
+    expect(wrapper).toMatchSnapshot()
+  })
 })
