@@ -11,7 +11,7 @@ const HeaderStyled = styled.div`
   align-self: center;
   align-items: center;
   font-weight: 600;
-  border: 5px solid;
+  border: ${props => (props.hero ? '5px solid' : 'none')};
   padding: 10px 0;
   letter-spacing: 5px;
   line-height: 40px;
@@ -41,9 +41,10 @@ const Header = ({ id, className, headline, subtitle, ...props }) => (
 Header.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  headline: PropTypes.node.isRequired,
+  headline: PropTypes.node,
   subtitle: PropTypes.node,
   uppercase: PropTypes.bool,
+  hero: PropTypes.bool,
 }
 
 Header.defaultProps = {
@@ -51,6 +52,7 @@ Header.defaultProps = {
   className: null,
   subtitle: null,
   uppercase: false,
+  hero: false,
 }
 
 export { HeaderStyled }
