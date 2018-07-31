@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-self: center;
   font-family: ${props => props.theme.fonts.primary};
-  ~ /media screen and (max-width: 640px) {
+  @media screen and (max-width: 640px) {
     padding-top: 3.25rem;
   }
 `

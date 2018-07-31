@@ -5,7 +5,7 @@ const ImageRender = styled.div`
   background-size: cover;
   background-position: center;
   height: ${props => props.height}px;
-  width: ${props => props.width}px;
+  width: ${props => (!props.width ? 'auto' : `${props.width}px`)};
 `
 
 export default ImageRender

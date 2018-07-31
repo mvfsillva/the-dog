@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 import tag from 'clean-tag'
 import LazyLoad from 'react-lazyload'
 import { CSSTransitionGroup } from 'react-transition-group'
@@ -10,6 +10,26 @@ import { transitions } from 'polished'
 import ImageRender from '~/styles/ImageRender'
 import { transition } from '~/mixins/transition'
 import { formatId } from '~/utils'
+
+injectGlobal`
+  .fade-enter {
+    opacity: 0.01;
+  }
+
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 2s ease-in;
+  }
+
+  .fade-leave {
+    opacity: 1;
+  }
+
+  .fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity 2s ease-in;
+  }
+`
 
 const Panel = styled(tag).attrs({ bg: 'white' })`
   border: solid 1px #e9eef0;
@@ -23,17 +43,8 @@ const Panel = styled(tag).attrs({ bg: 'white' })`
   cursor: pointer;
   ${transitions(transition({ property: 'box-shadow' }))};
 
-  .fade-appear {
-    opacity: 0.01;
-  }
-
   &:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.19);
-  }
-
-  .fade-appear.fade-appear-active {
-    ${transitions(transition({ property: 'opacity', duration: '2s' }))};
-    opacity: 1;
   }
 `
 
@@ -53,14 +64,11 @@ const Card = ({ data, ...props }) => (
   <Container {...props}>
     {data.list.map(dog => (
       <Panel key={formatId(dog)}>
-        <LazyLoad throttle={300} height={400}>
+        <LazyLoad throttle={300} height={600}>
           <CSSTransitionGroup
-            key="1"
             transitionName="fade"
-            transitionAppear
-            transitionAppearTimeout={650}
-            transitionEnter={false}
-            transitionLeave={false}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
           >
             <Link
               to={{
