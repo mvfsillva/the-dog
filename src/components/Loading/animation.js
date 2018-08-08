@@ -2,22 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Lottie from 'react-lottie'
-
 import * as animation from './assets/spinner.json'
 
-const StyledLottie = styled.div`
-  position: relative;
-  top: -40%;
-  margin: auto;
+const Section = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `
 
-const Spinner = ({ width, height, loop, autoplay, animation }) => (
-  <StyledLottie>
+const Animation = ({ width, height, loop, autoplay, animation }) => (
+  <Section>
     <Lottie options={{ animationData: animation, loop, autoplay }} height={height} width={width} />
-  </StyledLottie>
+  </Section>
 )
 
-Spinner.propTypes = {
+Animation.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   loop: PropTypes.bool,
@@ -25,12 +25,12 @@ Spinner.propTypes = {
   animation: PropTypes.object,
 }
 
-Spinner.defaultProps = {
-  width: 200,
-  height: 100,
+Animation.defaultProps = {
+  width: 600,
+  height: 600,
   loop: true,
   autoplay: true,
   animation: animation,
 }
 
-export default Spinner
+export default Animation

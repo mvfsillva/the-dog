@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Spinner from '.'
+import Animation from './animation'
 
 const LOTTIE_CLASSNAME = '_test--lottie'
 
@@ -10,7 +10,7 @@ beforeEach(() => {
   lottie.default = props => <div className={LOTTIE_CLASSNAME} {...props} />
 })
 
-describe('[Component: Spinner]', () => {
+describe('[Component: Animation]', () => {
   it('Renders loading animation', () => {
     const [width, height, loop, autoplay, animation] = [
       100,
@@ -20,7 +20,7 @@ describe('[Component: Spinner]', () => {
       { layers: [{ name: 'Chicken Black Power' }] },
     ]
     const spinner = mount(
-      <Spinner
+      <Animation
         width={width}
         height={height}
         loop={loop}
