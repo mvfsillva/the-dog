@@ -3,10 +3,8 @@ import { Redirect } from 'react-router'
 
 import Header from '~/components/Header'
 import Navigation from '~/components/Navigation'
-import Spinner from '~/components/Spinner'
 import Card from '~/components/Card'
 import Modal from '~/components/Modal'
-import If from '~/components/common/If'
 
 import { HeaderWrapper } from '~/styles/Wrapper'
 import Content from '~/styles/Content'
@@ -14,13 +12,13 @@ import ImageRender from '~/styles/ImageRender'
 
 import feedService from '~/services/feed'
 import userService from '~/services/user'
+import loading from '~/components/Loading'
 
 class Feed extends Component {
   constructor(props) {
     super(props)
     this.state = {
       data: [],
-      isLoading: true,
       isAuthenticated: true,
       activeFilter: '?category=husky',
     }
@@ -35,19 +33,18 @@ class Feed extends Component {
     const { activeFilter } = this.state
 
     if (!token) {
-      return this.setState({ isAuthenticated: false, isLoading: false })
+      return this.setState({ isAuthenticated: false })
     }
 
     return await feedService.list(token, activeFilter).then(data => {
       this.props.history.push('/feed')
-      this.setState({ data, isAuthenticated: true, isLoading: false })
+      this.setState({ data, isAuthenticated: true })
     })
   }
 
   handleCategory = async breed => {
     await this.setState({
       activeFilter: `?category=${breed}`,
-      isLoading: true,
     })
     this.getFeed()
   }
@@ -55,14 +52,15 @@ class Feed extends Component {
   handleCloseModal = () => this.props.history.push('/feed')
 
   handleSignout = () => {
-    console.log('cliquei')
     userService.signout()
     this.props.history.push('/')
   }
 
   render() {
-    const { data, isLoading, isAuthenticated } = this.state
+    const { data, isAuthenticated } = this.state
     const { id, url } = this.props.location.state || {}
+
+    console.log(data)
 
     if (!isAuthenticated) return <Redirect to="/" />
 
@@ -75,18 +73,13 @@ class Feed extends Component {
         <Content>
           <Header subtitle={data.category} />
         </Content>
-        <If test={isLoading}>
-          <Spinner />
-        </If>
-        <If test={!isLoading}>
-          <Card data={data} />
-          <Modal open={!!id} closeable onClose={this.handleCloseModal}>
-            <ImageRender image={url} width={620} height={460} />
-          </Modal>
-        </If>
+        <Card data={data} />
+        <Modal open={!!id} closeable onClose={this.handleCloseModal}>
+          <ImageRender image={url} width={620} height={460} />
+        </Modal>
       </HeaderWrapper>
     )
   }
 }
 
-export default Feed
+export default loading(Feed)

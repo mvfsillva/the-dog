@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import serializeForm from 'form-serialize'
-
-import Header from '~/components/Header'
-import Signup from '~/templates/Signup'
-
 import { Wrapper } from '~/styles/Wrapper'
 import Content from '~/styles/Content'
-
 import authService from '~/services/auth'
 import userService from '~/services/user'
+import Signup from '~/containers/Signup'
+import Header from '~/components/Header'
+import loading from '~/components/loading'
 
 class Home extends Component {
   constructor(props) {
     super(props)
     const isAuthenticated = authService.isAuthenticated()
     this.state = {
-      isLoading: false,
       isCredentialsError: false,
       hasError: false,
       isAuthenticated,
@@ -26,7 +23,6 @@ class Home extends Component {
   login = async data => {
     const { email } = data
     await userService.login(email).then(({ user, error }) => {
-      this.setState({ isLoading: true })
       return error ? this.loginError(error) : this.loginSuccess(data, user.token)
     })
   }
@@ -34,14 +30,13 @@ class Home extends Component {
   loginSuccess = async (data, token) => {
     localStorage.setItem('token', token)
     userService.saveUser(data)
-    this.setState({ isAuthenticated: true, isLoading: false, isCredentialsError: false })
+    this.setState({ isAuthenticated: true, isCredentialsError: false })
   }
 
   loginError = isCredentialsError =>
     this.setState({
       isCredentialsError,
       hasError: true,
-      isLoading: false,
     })
 
   handleSubmit = e => {
@@ -51,7 +46,7 @@ class Home extends Component {
   }
 
   render() {
-    const { isLoading, hasError, isAuthenticated } = this.state
+    const { hasError, isAuthenticated } = this.state
     const { from = { pathname: '/feed' } } = this.props.location.state || {}
 
     if (isAuthenticated) return <Redirect to={from} />
@@ -61,10 +56,10 @@ class Home extends Component {
         <Content>
           <Header headline="the iddog" uppercase hero />
         </Content>
-        <Signup handleSubmit={this.handleSubmit} error={hasError} loading={isLoading} />
+        <Signup handleSubmit={this.handleSubmit} error={hasError} />
       </Wrapper>
     )
   }
 }
 
-export default Home
+export default loading(Home)
